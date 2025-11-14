@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type YES to deploy to PROD"
+        required: true
+        default: "NO"
 
 jobs:
   basic-test:
