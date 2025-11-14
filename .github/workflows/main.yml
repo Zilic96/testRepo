@@ -1,0 +1,29 @@
+name: Basic Test Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  basic-test:
+    name: Run basic checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Print hello
+        run: echo "Workflow is running!"
+
+      - name: List files
+        run: ls -R .
