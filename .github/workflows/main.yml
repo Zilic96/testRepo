@@ -27,3 +27,20 @@ jobs:
 
       - name: List files
         run: ls -R .
+
+  
+  deploy_prod:
+    name: Deploy to PROD
+    runs-on: ubuntu-latest
+    needs: basic-test
+    steps:
+      - name: Waiting for manual confirmation
+        uses: trstringer/manual-approval@v1
+        with:
+          approvers: Zilic96
+          minimum-approvals: 1
+          issue-title: "Approve PROD deployment?"
+          issue-body: "UAT succeeded. Approve PROD deployment."
+
+      - name: Print hello
+        run: echo "Workflow is running!"
